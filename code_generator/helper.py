@@ -1,7 +1,8 @@
-from typing import Container, List, Union
 from collections.abc import Iterable
 from fractions import Fraction
 from math import factorial
+import os
+from typing import Container, List, Union
 
 from .classes import Amplitude, Diagram, Spin, Symbol
 from . import data
@@ -122,7 +123,9 @@ def get_space_string(operator: [list[Symbol], list[Symbol]]) -> str:
     return space_string
 
 def write_files(filename: str, contents: str):
-    with open(f"generated_code/{filename}.txt", "a") as f:
+    filename = f"generated_code/{filename}.txt"
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
+    with open(filename, "a") as f:
         f.write(contents + "\n\n")
 
 def multinomial(lst: list[int]) -> int:
